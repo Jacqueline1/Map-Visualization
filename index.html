@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Map-based-visualization</title>
+		<style type="text/css">
+			html, body, #map {
+				margin: 0;
+				height: 100%;
+			}
+		</style>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="lib/leaflet/leaflet.css" />
+		<link rel="stylesheet" href="lib/cluster/MarkerCluster.css" />
+		<link rel="stylesheet" href="lib/cluster/MarkerCluster.Default.css"  />
+		<link rel="stylesheet" href="lib/photo/Leaflet.Photo.css" />
+		<link rel="stylesheet" href="css/map.css" />
+		<script src="lib/reqwest.min.js"></script>
+		<script src="lib/leaflet/leaflet.js"></script>
+		<script src="lib/cluster/leaflet.markercluster.js"></script>
+		<script src="lib/photo/Leaflet.Photo.js"></script>
+	</head>
+	<body>
+		<div id="map"></div>
+
+		<!-- create world map -->
+		<script src="javascript/mapVisualization.js"></script>
+
+		<!-- add pictures of coins -->
+		<script src="javascript/applyImages.js"></script>
+	</body>
+</html>
