@@ -1,23 +1,33 @@
 //load all coins from unique locations
 function showAllCoins(maxlat, minlat, maxlon, minlon) {
+var win = window.open("", "Title", "toolbar=yes, location=yes, directories=yes, status=yes, menubar=no, scrollbars=yes, resizable=yes, width=600, height=400");
 
-	$.getJSON("data/allCoins.json", function(data) {
+$.getJSON("data/allCoins.json", function(data) {
 		for (var i in data.items) {
 			if (data.items[i].geo_bounds.max_lat == maxlat & data.items[i].geo_bounds.min_lat == minlat & data.items[i].geo_bounds.max_lon == maxlon & data.items[i].geo_bounds.min_lon == minlon) {
-				var win = window.open("", "Title", "toolbar=yes, location=yes, directories=yes, status=yes, menubar=no, scrollbars=yes, resizable=yes, width=780, height=400");
-				win.document.write(
+				win.document.write('<html>'+
+				'<head><title>Coins</title><style type="text/css"> html, body { font-family: "Arial"; }</style>'
+				);
 					
-					'<html>'+
-					'<head><title>Coins</title><style type="text/css"> html, body, #map { font-family: "Arial";font-size: "10px"; }</style>'+
-					'<img src="' + data.items[i].image_urls[0] + '"width="150" height="130">' + 
-					'<img src="' + data.items[i].image_urls[1] + '"width="150" height="130"><br>' + 
-					'<br><table><tr><td>Title:</td><td> '+data.items[i].title + '</td></tr>'+
-					'<tr><td>Provider:</td><td>'+data.items[i].provider+'</td></tr>'+
-					'<tr><td>Homepage:</td><td> <a href="' + data.items[i].homepage + '">' + data.items[i].homepage + '"</a>"<td></tr></table><br><br>' 
-				);	'</html'
-			}
+				 if(!data.items[i].image_urls[1]){
+						win.document.write(
+						'<img src="' + data.items[i].image_urls[0] + '"width="20%" height="auto" alt="'+data.items[i].image_urls[0]+'">'  +
+						'<br><table><tr><td>Title:</td><td> '+data.items[i].title + '</td></tr>'+
+						'<tr><td>Provider:</td><td>'+data.items[i].provider+'</td></tr>'+
+						'<tr><td>Homepage:</td><td> <a href="' + data.items[i].homepage + '">' + data.items[i].homepage + '"</a>"<td></tr></table><br><br>' 
+						+'</html');	
+					}else{
+						win.document.write(
+						'<img src="' + data.items[i].image_urls[0] + '"width="100" height="100">'  +
+						'<img src="' + data.items[i].image_urls[1] + '"width="100" height="100"><br>' + 
+						'<br><table><tr><td>Title:</td><td> '+data.items[i].title + '</td></tr>'+
+						'<tr><td>Provider:</td><td>'+data.items[i].provider+'</td></tr>'+
+						'<tr><td>Homepage:</td><td> <a href="' + data.items[i].homepage + '">' + data.items[i].homepage + '"</a>"<td></tr></table><br><br>' 
+						+'</html');		
+					}
+			}		
 		}
-
+win.document.close();
 	});
 }
 
